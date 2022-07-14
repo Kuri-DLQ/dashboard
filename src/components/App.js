@@ -10,20 +10,18 @@ function App() {
     const run = async () => {
       try {
         let data = await tableService.getAllMessages();
-        console.log('data', data)
         setMessages(data.data);
-        console.log('messages', messages);
       } catch (err) {
         console.error(err);
       }
     }
 
     run();
-  }, [messages])
+  }, [])
 
   return (
     <div>
-      <Table messages={messages}x/>
+      <Table messages={messages}/>
     </div>
   );
 }
