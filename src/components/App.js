@@ -8,8 +8,8 @@ function App() {
   useEffect(() => {
     const run = async () => {
       try {
-        let data = await tableService.getAllMessages();
-        setMessages(data.data);
+        const result = await tableService.getAllMessages();
+        setMessages(result.data);
       } catch (err) {
         console.error(err);
       }
@@ -18,19 +18,42 @@ function App() {
     run();
   }, [])
 
+  const filterMessages = (id) => {
+    const updatedMessageList = messages.filter(message => {
+      return message.id !== id;
+    })
+    
+    return updatedMessageList;
+  }
+
   const handleDelete = (id) => {
     return () => {
       tableService.deleteMessage(id);
-      const updatedMessageList = messages.filter(message => {
-        return message.id !== id;
-      })
+
+      const updatedMessageList = filterMessages(id)
+      setMessages(updatedMessageList);
+    }
+  }
+
+  const handleResend = (id) => {
+    return () => {
+      const messageToResend = messages.find(message => message.id === id);
+      tableService.resendMessage(messageToResend)
+
+      handleDelete(id);
+      
+      const updatedMessageList = filterMessages(id)
       setMessages(updatedMessageList);
     }
   }
 
   return (
     <div>
-      <Table messages={messages} onDelete={handleDelete}/>
+      <Table
+        messages={messages}
+        onDelete={handleDelete}
+        onResend={handleResend}
+      />
     </div>
   );
 }
