@@ -1,8 +1,9 @@
-const Message = ({messageId, messageBody, onDelete}) => {
+const Message = ({message, onDelete, onResend}) => {
   return (
     <>
-      <li>{messageBody}</li>
-      <button onClick={onDelete(messageId)}>Delete message</button>
+      <li>{message.Message}</li>
+      <button onClick={onDelete(message.id)}>Delete</button>
+      <button onClick={onResend(message.id)}>Resend</button>
     </>
   )
 }
