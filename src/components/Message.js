@@ -3,7 +3,6 @@ const Message = ({messageId, messageBody, onDelete}) => {
     <>
       <li>{messageBody}</li>
       <button onClick={onDelete(messageId)}>Delete message</button>
-      {/* <button onClick={onDelete(messageId)}>Delete message</button> */}
     </>
   )
 }
