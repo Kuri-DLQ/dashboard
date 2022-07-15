@@ -11,8 +11,19 @@ const getAllMessages = async () => {
   }
 }
 
+ const deleteMessage = async (id) => {
+  console.log(`message with ${id} passed in`);
+  try {
+    await axios.delete(url + `/table/deleteMessage/${id}`);
+    console.log(`message with ${id} deleted`);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 const tableService = {
   getAllMessages,
+  deleteMessage,
 }
 
 export default tableService;
