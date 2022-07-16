@@ -28,8 +28,8 @@ function App() {
   }
 
   const handleDelete = (id) => {
-    return () => {
-      messageService.deleteMessage(id);
+    return async () => {
+      await messageService.deleteMessage(id);
 
       const updatedMessageList = filterMessages(id)
       setMessages(updatedMessageList);
@@ -37,9 +37,9 @@ function App() {
   }
 
   const handleResend = (id) => {
-    return () => {
+    return async () => {
       const messageToResend = messages.find(message => message.id === id);
-      messageService.resendMessage(messageToResend)
+      await messageService.resendMessage(messageToResend)
 
       handleDelete(id);
 
@@ -48,31 +48,25 @@ function App() {
     }
   }
 
-  const handleDeleteAll = () => {
-    tableService.deleteAllMessages();
+  const handleDeleteAll = async () => {
+    await tableService.deleteAllMessages();
     setMessages([]);
   }
 
-  const handleResendAll = () => {
-    tableService.resendAllMessages();
+  const handleResendAll = async () => {
+    await tableService.resendAllMessages();
     setMessages([]);
-  }
-
-  const handleView = (id) => {
-    return () => {
-      console.log('view message');
-    }
   }
 
   return (
     <div>
       <Table
         messages={messages}
+        setMessages={setMessages}
         onDelete={handleDelete}
         onResend={handleResend}
         onDeleteAll={handleDeleteAll}
         onResendAll={handleResendAll}
-        onView={handleView}
       />
     </div>
   );

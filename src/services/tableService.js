@@ -13,8 +13,7 @@ const getAllMessages = async () => {
 
 const deleteAllMessages = async () => {
   try {
-    const results = await axios.delete(url + '/table/deleteAllMessages');
-    console.log(results);
+    await axios.delete(url + '/table/deleteAllMessages');
   } catch (err) {
     console.error(err);
   }
@@ -22,8 +21,7 @@ const deleteAllMessages = async () => {
 
 const resendAllMessages = async () => {
   try {
-    const results = await axios.post(url + '/table/resendAllMessages');
-    console.log(results);
+    await axios.post(url + '/table/resendAllMessages');
   } catch (err) {
     console.error(err);
   }
