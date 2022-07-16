@@ -1,6 +1,6 @@
 import Message from './Message'
 
-const Table = ({messages, onDelete, onDeleteAll, onResend, onResendAll}) => {
+const Table = ({messages, onDelete, onDeleteAll, onResend, onResendAll, onView}) => {
   return (
     <>
       <ul>
@@ -9,7 +9,8 @@ const Table = ({messages, onDelete, onDeleteAll, onResend, onResendAll}) => {
             key={message.id}
             message={message}
             onDelete={onDelete}
-            onResend={onResend} />
+            onResend={onResend}
+            onView={onView} />
         })}
       </ul>
       <button onClick={onDeleteAll}>Delete All</button>
