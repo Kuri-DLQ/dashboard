@@ -11,27 +11,28 @@ const getAllMessages = async () => {
   }
 }
 
-const deleteMessage = async (id) => {
+const deleteAllMessages = async () => {
   try {
-    await axios.delete(url + `/table/deleteMessage/${id}`);
+    const results = await axios.delete(url + '/table/deleteAllMessages');
+    console.log(results);
   } catch (err) {
     console.error(err);
   }
- }
+}
 
-const resendMessage = async (message) => {
-  console.log(`resending ${message.id}`)
+const resendAllMessages = async () => {
   try {
-    await axios.post(url + `/table/resendMessage`, message)
+    const results = await axios.post(url + '/table/resendAllMessages');
+    console.log(results);
   } catch (err) {
     console.error(err);
   }
- }
+}
 
 const tableService = {
   getAllMessages,
-  deleteMessage,
-  resendMessage,
+  deleteAllMessages,
+  resendAllMessages,
 }
 
 export default tableService;
