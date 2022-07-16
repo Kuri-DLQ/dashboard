@@ -1,16 +1,17 @@
-import Message from './Message'
+import Message from './EditableMessage'
 
-const Table = ({messages, onDelete, onDeleteAll, onResend, onResendAll, onView}) => {
+const Table = ({messages, setMessages, onDelete, onDeleteAll, onResend, onResendAll}) => {
   return (
     <>
       <ul>
         {messages.map(message => {
           return <Message
             key={message.id}
+            messages={messages}
             message={message}
+            setMessages={setMessages}
             onDelete={onDelete}
-            onResend={onResend}
-            onView={onView} />
+            onResend={onResend} />
         })}
       </ul>
       <button onClick={onDeleteAll}>Delete All</button>

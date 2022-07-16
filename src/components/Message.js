@@ -1,22 +1,12 @@
-import { useState } from "react";
-import CurrMessageView from './CurrMessageView';
-
-const Message = ({message, onDelete, onResend, onView}) => {
-  const [showMessage, setShowMessage] = useState(false);
-
-  const handleShowMessage = () => {
-    setShowMessage(!showMessage);
-  }
-
+const Message = ({ message, handleShowMessage, onDelete, onResend}) => {
   return (
     <>
       <li>{message.Message}</li>
-      <button onClick={handleShowMessage}>View Message</button>
+      <button onClick={handleShowMessage}>View</button>
       <button onClick={onDelete(message.id)}>Delete</button>
       <button onClick={onResend(message.id)}>Resend</button>
-      {showMessage && (<CurrMessageView message={message} onCancel={handleShowMessage} showMessage={showMessage} setShowMessage={setShowMessage} />)}
     </>
   )
 }
 
-export default Message;
+export default Message

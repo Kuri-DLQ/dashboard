@@ -4,8 +4,17 @@ const url = 'http://localhost:5001';
 
 const viewMessage = async (id) => {
   try {
-    const message = await axios.get(url + `/table/viewMessage/${id}`);
-    return message;
+    const data = await axios.get(url + `/table/viewMessage/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+const updateMessage = async (id, message) => {
+  try {
+    const data = await axios.put(url + `/table/updateMessage/${id}`, message);
+    return data;
   } catch (err) {
     console.error(err);
   }
@@ -20,9 +29,9 @@ const deleteMessage = async (id) => {
  }
 
 const resendMessage = async (message) => {
-  console.log(`resending ${message.id}`)
   try {
-    await axios.post(url + `/table/resendMessage`, message)
+    const data = await axios.post(url + `/table/resendMessage`, message);
+    console.log(data);
   } catch (err) {
     console.error(err);
   }
@@ -32,6 +41,7 @@ const messageService = {
   deleteMessage,
   resendMessage,
   viewMessage,
+  updateMessage,
 }
 
 export default messageService;
