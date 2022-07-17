@@ -39,6 +39,7 @@ function App() {
   const handleResend = (id) => {
     return async () => {
       const messageToResend = messages.find(message => message.id === id);
+      console.log(messageToResend);
       await messageService.resendMessage(messageToResend)
 
       handleDelete(id);

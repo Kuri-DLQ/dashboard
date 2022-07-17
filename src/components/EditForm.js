@@ -17,32 +17,34 @@ const EditForm = ({ message, messages, setMessages, setShowMessage, showMessage,
     setAttributes(e.target.value);
   };
 
-  const handleUpdateAndSave = (e) => {
+  const handleUpdateAndSave = async (e) => {
     e.preventDefault();
 
     const updatedMessage = {
+      id: message.id,
       Message: body,
       Attributes: JSON.parse(attributes),
     }
 
-    messageService.updateMessage(message.id, updatedMessage);
+    await messageService.updateMessage(message.id, updatedMessage);
     const updatedMessages = messages.map(msg => {
       if (msg.id === message.id) {
         updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
-        updatedMessage["id"] = message.id;
         return updatedMessage;
       } else {
         return msg;
       }
     })
 
+    console.log(updatedMessages) // logs updated messages
     setMessages(updatedMessages);
+    console.log(messages) // state not updated - logs messages without updated message
 
     clearFields();
     handleShowMessage();
   }
 
-  const handleUpdateAndResend = async (e) => {
+  const handleUpdateAndResend = (e) => {
     e.preventDefault();
 
     const updatedMessage = {
@@ -53,15 +55,16 @@ const EditForm = ({ message, messages, setMessages, setShowMessage, showMessage,
 
     const updatedMessages = messages.map(msg => {
       if (msg.id === message.id) {
-        console.log(msg);
         return updatedMessage;
       } else {
         return msg;
       }
     });
 
+    console.log(updatedMessages) // logs updated messages
     setMessages(updatedMessages);
-    onResend(message.id)();
+    console.log(messages); // state not updated - logs messages without updated message
+    onResend(updatedMessage.id)();
   }
 
   const clearFields = () => {
@@ -104,33 +107,3 @@ const EditForm = ({ message, messages, setMessages, setShowMessage, showMessage,
 }
 
 export default EditForm;
-
-// const parsedAttributes = JSON.parse(message.Attributes)
-// const attributes = Object.keys(parsedAttributes);
-
-//   return (
-//     <>
-//       <ul>
-//         <li>{message.id}</li>
-//         <li>{message.Message}</li>
-//         <li>{message.Attributes}</li>
-//       </ul>
-
-//       {attributes.map(attribute => {
-//         return (
-//           <>
-//             <p>Message attribute: {attribute}</p>
-//             <p>
-//               Type: {parsedAttributes[attribute]["Type"]}
-//             </p>
-//             <p>
-//               Value: {parsedAttributes[attribute]["Value"]}
-//             </p>
-//           </>
-//           )
-//         })
-//       }
-//       <button onClick={() => {setShowMessage(!showMessage)}}>Cancel</button>
-//     </>
-//   )
-// }
