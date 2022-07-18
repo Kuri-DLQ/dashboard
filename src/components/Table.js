@@ -1,14 +1,14 @@
-import Message from './EditableMessage'
+import EditableMessage from './EditableMessage';
 
 const Table = ({messages, setMessages, onDelete, onDeleteAll, onResend, onResendAll}) => {
   return (
     <>
       <ul>
         {messages.map(message => {
-          return <Message
+          return <EditableMessage
             key={message.id}
-            messages={messages}
             message={message}
+            messages={messages}
             setMessages={setMessages}
             onDelete={onDelete}
             onResend={onResend} />
