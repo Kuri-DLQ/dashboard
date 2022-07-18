@@ -99,7 +99,7 @@ const EditForm = ({ message, messages, setMessages, setShowMessage, showMessage,
         <div>
           <button onClick={handleUpdateAndSave}>Update and Save</button>
           <button onClick={handleUpdateAndResend}>Update and Resend</button>
-          <a href="/#" onClick={handleShowMessage}>Cancel</a>
+          <button onClick={handleShowMessage}>Cancel</button>
         </div>
       </form>
     </>

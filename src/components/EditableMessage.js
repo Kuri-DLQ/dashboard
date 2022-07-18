@@ -18,8 +18,8 @@ const EditableMessage = ({messages, message, setMessages, onDelete, onResend}) =
         onResend={onResend} />
       {showMessage &&
         (<EditForm
-        messages={messages}
         message={message}
+        messages={messages}
         setMessages={setMessages}
         onResend={onResend}
         onCancel={handleShowMessage}

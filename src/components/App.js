@@ -39,7 +39,7 @@ function App() {
   const handleResend = (id) => {
     return async () => {
       const messageToResend = messages.find(message => message.id === id);
-      console.log(messageToResend);
+      console.log(messageToResend); // when called from EditForm, messages state is not updated causing this message to be stale
       await messageService.resendMessage(messageToResend)
 
       handleDelete(id);
