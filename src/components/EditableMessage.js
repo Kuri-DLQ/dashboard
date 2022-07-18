@@ -30,13 +30,3 @@ const EditableMessage = ({messages, message, setMessages, onDelete, onResend}) =
 }
 
 export default EditableMessage;
-
-  // return (
-  //   <>
-  //     <li>{message.Message}</li>
-  //     <button onClick={handleShowMessage}>View Message</button>
-  //     <button onClick={onDelete(message.id)}>Delete</button>
-  //     <button onClick={onResend(message.id)}>Resend</button>
-  //     {showMessage && (<CurrMessageView message={message} onCancel={handleShowMessage} showMessage={showMessage} setShowMessage={setShowMessage} />)}
-  //   </>
-  // )

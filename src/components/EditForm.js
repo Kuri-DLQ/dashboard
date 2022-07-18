@@ -36,35 +36,26 @@ const EditForm = ({ message, messages, setMessages, setShowMessage, showMessage,
       }
     })
 
-    console.log(updatedMessages) // logs updated messages
     setMessages(updatedMessages);
-    console.log(messages) // state not updated - logs messages without updated message
 
     clearFields();
     handleShowMessage();
   }
 
-  const handleUpdateAndResend = (e) => {
+  const handleUpdateAndResend = async (e) => {
     e.preventDefault();
 
     const updatedMessage = {
       id: message.id,
       Message: body,
-      Attributes: attributes,
+      Attributes: JSON.parse(attributes),
     }
 
-    const updatedMessages = messages.map(msg => {
-      if (msg.id === message.id) {
-        return updatedMessage;
-      } else {
-        return msg;
-      }
-    });
+    await messageService.updateMessage(message.id, updatedMessage);
+    
+    updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
 
-    console.log(updatedMessages) // logs updated messages
-    setMessages(updatedMessages);
-    console.log(messages); // state not updated - logs messages without updated message
-    onResend(updatedMessage.id)();
+    onResend(updatedMessage);
   }
 
   const clearFields = () => {

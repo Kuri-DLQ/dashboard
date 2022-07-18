@@ -27,26 +27,19 @@ function App() {
     return updatedMessageList;
   }
 
-  const handleDelete = (id) => {
-    return async () => {
-      await messageService.deleteMessage(id);
+  const handleDelete = async (id) => {
+    await messageService.deleteMessage(id);
 
-      const updatedMessageList = filterMessages(id)
-      setMessages(updatedMessageList);
-    }
+    const updatedMessageList = filterMessages(id)
+    setMessages(updatedMessageList);
   }
 
-  const handleResend = (id) => {
-    return async () => {
-      const messageToResend = messages.find(message => message.id === id);
-      console.log(messageToResend); // when called from EditForm, messages state is not updated causing this message to be stale
-      await messageService.resendMessage(messageToResend)
+  const handleResend = async (messageToResend) => {
+    await messageService.resendMessage(messageToResend)
+    await handleDelete(messageToResend.id);
 
-      handleDelete(id);
-
-      const updatedMessageList = filterMessages(id)
-      setMessages(updatedMessageList);
-    }
+    const updatedMessageList = filterMessages(messageToResend.id)
+    setMessages(updatedMessageList);
   }
 
   const handleDeleteAll = async () => {
