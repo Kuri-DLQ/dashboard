@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -19,8 +19,8 @@ const ModalForm = ({ handleShowModalForm, showModalForm, setShowModalForm })=> {
       {/* <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button> */}
-
-      <Modal showModalForm={showModalForm} onHide={handleShowModalForm}>
+      <p>here</p>
+      <Modal show={showModalForm} onHide={handleShowModalForm}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
