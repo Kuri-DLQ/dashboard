@@ -30,8 +30,7 @@ const deleteMessage = async (id) => {
 
 const resendMessage = async (message) => {
   try {
-    const data = await axios.post(url + `/table/resendMessage`, message);
-    console.log(data);
+    await axios.post(url + `/table/resendMessage`, message);
   } catch (err) {
     console.error(err);
   }

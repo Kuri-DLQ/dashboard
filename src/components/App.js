@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import tableService from '../services/tableService';
 import messageService from "../services/messageService";
-import Table from './Table';
+import TableItems from './TableItems';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div>
-      <Table
+      <TableItems
         messages={messages}
         setMessages={setMessages}
         onDelete={handleDelete}
