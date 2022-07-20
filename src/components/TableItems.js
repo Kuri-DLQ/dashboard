@@ -7,7 +7,7 @@ import Row from './Row';
 const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, onResendAll }) => {
   const [showModalForm, setShowModalForm] = useState(false);
 
-  const handleShowModalForm = () => {
+  const handleShowModalForm = (message) => {
     setShowModalForm(!showModalForm);
   }
 
@@ -22,7 +22,16 @@ const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, on
         </tr>
       </thead>
       <tbody>
-        {messages.map(message => {
+          {messages.map(message => {
+            if (showModalForm) {
+            return  <ModalForm
+              message={message}
+              messages={messages}
+              setMessages={setMessages}
+              onResend={onResend}
+              handleShowModalForm={handleShowModalForm}
+              showModalForm={showModalForm}/>
+  }
           return <Row
             key={message.id}
             message={message}
@@ -38,15 +47,8 @@ const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, on
       </Table>
       <div>
         <button onClick={onDeleteAll}>Delete All</button>
-        <button onClick={onResendAll}>Resend All</button>
+        <button onClick={onResendAll}>Redrive All</button>
       </div>
-      {showModalForm &&
-        (<ModalForm
-        handleShowModalForm={handleShowModalForm}
-        showModalForm={showModalForm}
-        setShowModalForm={setShowModalForm}
-        />)
-      }
     </div>
   )
 }
