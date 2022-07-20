@@ -5,8 +5,15 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 const ModalForm = ({ message, messages, handleShowModalForm, showModalForm, setMessages, onResend }) => {
+  console.log("from modal:", message)
   const [body, setBody] = useState(message.Message);
   const [attributes, setAttributes] = useState(message.Attributes);
+
+  // const handleShow = () => {
+  //   handleShowModalForm();
+  //   console.log("modal show state:", showModalForm);
+  //   return true;
+  // }
 
   const handleBodyChange = (e) => {
     setBody(e.target.value);

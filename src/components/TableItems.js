@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import ModalForm from './ModalForm';
+// import ModalForm from './ModalForm';
 // import EditableMessage from './EditableMessage';
 import Row from './Row';
 
 const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, onResendAll }) => {
   const [showModalForm, setShowModalForm] = useState(false);
 
-  const handleShowModalForm = (message) => {
+  const handleShowModalForm = () => {
     setShowModalForm(!showModalForm);
   }
 
@@ -21,28 +21,20 @@ const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, on
             <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+        <tbody>
           {messages.map(message => {
-            if (showModalForm) {
-            return  <ModalForm
+            console.log("from map:", message)
+            return <Row
+              key={message.id}
               message={message}
               messages={messages}
               setMessages={setMessages}
+              onDelete={onDelete}
               onResend={onResend}
               handleShowModalForm={handleShowModalForm}
-              showModalForm={showModalForm}/>
-  }
-          return <Row
-            key={message.id}
-            message={message}
-            messages={messages}
-            setMessages={setMessages}
-            onDelete={onDelete}
-            onResend={onResend}
-            handleShowModalForm={handleShowModalForm}
-            showModalForm={showModalForm}
-            setShowModalForm={setShowModalForm}/>
-        })}
+              showModalForm={showModalForm}
+              setShowModalForm={setShowModalForm} />
+          })}
       </tbody>
       </Table>
       <div>

@@ -1,11 +1,21 @@
-import Dropdown from 'react-bootstrap/Dropdown'
+// import { useState } from 'react'
+// import Dropdown from 'react-bootstrap/Dropdown'
 // import ModalForm from './ModalForm'
+import Actions from './Actions'
 
-const Row = ({ message, messages, setMessages, onDelete, onResend, showModalForm, handleShowModalForm }) => {
-  console.log(message.id)
+const Row = ({ message, messages, setMessages, onDelete, onResend, showModalForm, setShowModalForm, handleShowModalForm }) => {
+  // const [selectedMessage, setSelectedMessage] = useState(message)
+  // const [count, setCount] = useState(0)
   
+  // const handleShowModal = (id) => {
+  //   const clickedMessage = messages.find(msg => msg.id === id)
+  //   console.log("from row", clickedMessage)
+  //   setShowModalForm(true);
+  //   setSelectedMessage(clickedMessage);
+  //   setCount(1)
+  // }
   // if (showModalForm) {
-  //   console.log(message.id)
+    // console.log(message.id)
   //   return  <ModalForm
   //             message={message}
   //             messages={messages}
@@ -19,15 +29,16 @@ const Row = ({ message, messages, setMessages, onDelete, onResend, showModalForm
       <td>{message.id}</td>
       <td>{message.Message}</td>
       <td>
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">Actions
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={handleShowModalForm}>View details</Dropdown.Item>
-            <Dropdown.Item onClick={() => onDelete(message.id)}>Delete</Dropdown.Item>
-            <Dropdown.Item onClick={() => onResend(message)}>Redrive</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Actions
+          message={message}
+          messages={messages}
+          setMessages={setMessages}
+          onDelete={onDelete}
+          onResend={onResend}
+          showModalForm={showModalForm}
+          setShowModalForm={setShowModalForm}
+          handleShowModalForm={handleShowModalForm} />
+        
       </td>
     </tr>
   )
