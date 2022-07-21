@@ -16,6 +16,7 @@ const App = () => {
       try {
         const result = await tableService.getAllMessages();
         setMessages(result.data);
+        setMessageCount(result.data.length);
       } catch (err) {
         console.error(err);
       }
@@ -25,13 +26,12 @@ const App = () => {
 
     const eventSource = new EventSource(`${baseUrl}/table/sse`);
     eventSource.onmessage = (e) => {
-      console.log(e.data);
       setMessageCount(parseInt(e.data, 10));
     }
     // return () => {
     //   eventSource.close();
     // };
-  }, [])
+  }, [messageCount])
 
   const filterMessages = (id) => {
     const updatedMessageList = messages.filter(message => {
