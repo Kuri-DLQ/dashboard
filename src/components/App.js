@@ -4,11 +4,11 @@ import messageService from "../services/messageService";
 import TableItems from './TableItems';
 import Header from "./Header";
 import Footer from "./Footer";
-import ServerSent from "./ServerSent";
+import TableInfo from "./TableInfo";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
-  const [serverMessage, setServerMessage] = useState("test message");
+  const [messageCount, setMessageCount] = useState(0);
   const baseUrl = "http://localhost:5001";
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const App = () => {
     const eventSource = new EventSource(`${baseUrl}/table/sse`);
     eventSource.onmessage = (e) => {
       console.log(e.data);
-      setServerMessage(e.data);
+      setMessageCount(parseInt(e.data, 10));
     }
     // return () => {
     //   eventSource.close();
@@ -69,7 +69,7 @@ const App = () => {
   return (
     <div>
       <Header />
-      <ServerSent serverMessage={serverMessage}/>
+      <TableInfo messageCount={messageCount} />
       <TableItems
         messages={messages}
         setMessages={setMessages}
