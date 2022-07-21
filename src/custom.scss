@@ -1,5 +1,93 @@
-// Override default variables before the import
-$body-bg: white;
+//Import the fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+// Set up font stack
+$roboto: "Roboto", sans-serif;
+
+// Set the font weight
+$regular: 300;
+$medium: 400;
+
+// First override some or all individual color variables
+$primary: #153065;
+$secondary: #B12005;
+$darkblue: #274C7D;
+$lightblue: #D0F1FE;
+$lightcyan: #E0FFFF;
+$white: #ffffff;
+$coral: #FD7547;
+
+// Then add them to your custom theme-colors map, together with any additional colors you might need
+$theme-colors: (
+    primary: $primary,
+    secondary: $secondary,
+    light: $lightblue,
+    dark: $darkblue,
+    white: $white,
+    coral: $coral,
+    cyan: $lightcyan
+//     // add any additional color below
+);
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+
+body {
+    background: $white;
+    font-family: $roboto;
+}
+
+.header {
+    padding: 25px 0;
+    background: $primary;
+}
+
+.kuri-logo {
+    display: inline-block;
+    width: 200px;
+    height: 26px;
+}
+
+.github-logo {
+    float: right;
+    margin: 0px 120px 0px 0px;
+}
+
+.footer {
+    // margin-top: 1rem;
+    // padding: 1rem;
+    height: 30px;
+    background-color: $primary;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.message-table {
+    padding: 2rem;
+}
+
+.table-row {
+    color: $primary;
+    border-bottom: 0.25px solid $lightblue;
+}
+
+.header-row {
+    color: $secondary;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+tr:hover td.cell {
+    background: $lightblue;
+    color: $coral;
+}
+
+// tr {
+//     border-bottom: 0.25px solid $lightblue;
+// }
+
+// thead tr {
+//     border-bottom: 0.5px solid $coral;
+// }

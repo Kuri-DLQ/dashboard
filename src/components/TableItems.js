@@ -1,21 +1,24 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 // import ModalForm from './ModalForm';
 // import EditableMessage from './EditableMessage';
 import Row from './Row';
 
 const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, onResendAll }) => {
-  const [showModalForm, setShowModalForm] = useState(false);
+  // const [showModalForm, setShowModalForm] = useState(false);
 
-  const handleShowModalForm = () => {
-    setShowModalForm(!showModalForm);
-  }
+  // const handleShowModalForm = () => {
+  //   console.log("from show modal handler before:", showModalForm)
+  //   setShowModalForm(!showModalForm);
+  //   console.log("from show modal handler after:", showModalForm)
+  // }
 
   return (
-    <div>
-    <Table bordered hover>
+    <div className="message-table">
+    <Table className="message-items" >
       <thead>
-          <tr>
+          <tr className='header-row'>
             <th>Message ID</th>
             <th>Message</th>
             <th>Action</th>
@@ -31,15 +34,16 @@ const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, on
               setMessages={setMessages}
               onDelete={onDelete}
               onResend={onResend}
-              handleShowModalForm={handleShowModalForm}
-              showModalForm={showModalForm}
-              setShowModalForm={setShowModalForm} />
+              // handleShowModalForm={handleShowModalForm}
+              // showModalForm={showModalForm}
+              // setShowModalForm={setShowModalForm}
+            />
           })}
       </tbody>
       </Table>
       <div>
-        <button onClick={onDeleteAll}>Delete All</button>
-        <button onClick={onResendAll}>Redrive All</button>
+        <Button variant="primary" onClick={onDeleteAll}>Delete All</Button>
+        <Button variant="primary" onClick={onResendAll}>Redrive All</Button>
       </div>
     </div>
   )

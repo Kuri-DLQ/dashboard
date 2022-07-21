@@ -4,16 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const ModalForm = ({ message, messages, handleShowModalForm, showModalForm, setMessages, onResend }) => {
-  console.log("from modal:", message)
-  const [body, setBody] = useState(message.Message);
-  const [attributes, setAttributes] = useState(message.Attributes);
+const ModalForm = ({ selectedMessage, setSelectedMessage, messages, handleShowModalForm, showModalForm, setMessages, onResend }) => {
+  console.log("from modal:", selectedMessage)
+  const [body, setBody] = useState(selectedMessage.Message);
+  const [attributes, setAttributes] = useState(selectedMessage.Attributes);
 
-  // const handleShow = () => {
-  //   handleShowModalForm();
-  //   console.log("modal show state:", showModalForm);
-  //   return true;
-  // }
+  const handleModalClose = () => {
+    console.log('before close:', showModalForm)
+    handleShowModalForm();
+    console.log('after close:', showModalForm)
+    setSelectedMessage([]);
+  }
 
   const handleBodyChange = (e) => {
     setBody(e.target.value);
@@ -27,14 +28,14 @@ const ModalForm = ({ message, messages, handleShowModalForm, showModalForm, setM
     e.preventDefault();
 
     const updatedMessage = {
-      id: message.id,
+      id: selectedMessage.id,
       Message: body,
       Attributes: JSON.parse(attributes),
     }
 
-    await messageService.updateMessage(message.id, updatedMessage);
+    await messageService.updateMessage(selectedMessage.id, updatedMessage);
     const updatedMessages = messages.map(msg => {
-      if (msg.id === message.id) {
+      if (msg.id === selectedMessage.id) {
         updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
         return updatedMessage;
       } else {
@@ -52,12 +53,12 @@ const ModalForm = ({ message, messages, handleShowModalForm, showModalForm, setM
     e.preventDefault();
 
     const updatedMessage = {
-      id: message.id,
+      id: selectedMessage.id,
       Message: body,
       Attributes: JSON.parse(attributes),
     }
 
-    await messageService.updateMessage(message.id, updatedMessage);
+    await messageService.updateMessage(selectedMessage.id, updatedMessage);
     
     updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
 
@@ -72,7 +73,7 @@ const ModalForm = ({ message, messages, handleShowModalForm, showModalForm, setM
 
   return (
     <>
-      <Modal show={showModalForm} onHide={handleShowModalForm}>
+      <Modal show={showModalForm} onHide={handleModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Message details</Modal.Title>
         </Modal.Header>
@@ -84,7 +85,7 @@ const ModalForm = ({ message, messages, handleShowModalForm, showModalForm, setM
             >
               <Form.Label>Message ID</Form.Label>
               <div>
-                <Form.Text>{message.id}</Form.Text>
+                <Form.Text>{selectedMessage.id}</Form.Text>
               </div>
             </Form.Group>
             <Form.Group
@@ -120,7 +121,7 @@ const ModalForm = ({ message, messages, handleShowModalForm, showModalForm, setM
           <Button variant="primary" onClick={handleUpdateAndResend}>
             Update and redrive
           </Button>
-          <Button variant="secondary" onClick={handleShowModalForm}>
+          <Button variant="secondary" onClick={handleModalClose}>
             Cancel
           </Button>
         </Modal.Footer>
