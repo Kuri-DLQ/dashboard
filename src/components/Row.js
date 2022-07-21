@@ -3,7 +3,7 @@
 // import ModalForm from './ModalForm'
 import Actions from './Actions'
 
-const Row = ({ message, messages, setMessages, onDelete, onResend, showModalForm, setShowModalForm, handleShowModalForm }) => {
+const Row = ({ message, messages, setMessages, onDelete, onResend }) => {
   // const [selectedMessage, setSelectedMessage] = useState(message)
   // const [count, setCount] = useState(0)
   
@@ -25,20 +25,16 @@ const Row = ({ message, messages, setMessages, onDelete, onResend, showModalForm
   //             showModalForm={showModalForm}/>
   // }
   return (
-    <tr>
-      <td>{message.id}</td>
-      <td>{message.Message}</td>
-      <td>
+    <tr className="table-row">
+      <td className="cell">{message.id}</td>
+      <td className="cell">{message.Message}</td>
+      <td className="cell">
         <Actions
           message={message}
           messages={messages}
           setMessages={setMessages}
           onDelete={onDelete}
-          onResend={onResend}
-          showModalForm={showModalForm}
-          setShowModalForm={setShowModalForm}
-          handleShowModalForm={handleShowModalForm} />
-        
+          onResend={onResend} />        
       </td>
     </tr>
   )

@@ -8,28 +8,24 @@ $roboto: "Roboto", sans-serif;
 $regular: 300;
 $medium: 400;
 
-// Override default variables before the import
-$body-bg: white;
-
 // First override some or all individual color variables
-$midnightblue: #153065;
+$primary: #153065;
+$secondary: #B12005;
 $darkblue: #274C7D;
 $lightblue: #D0F1FE;
 $lightcyan: #E0FFFF;
 $white: #ffffff;
-$firebric: #B12005;
 $coral: #FD7547;
 
 // Then add them to your custom theme-colors map, together with any additional colors you might need
 $theme-colors: (
-//     primary: $primary,
-//     secondary: $secondary,
-    success: $midnightblue,
-//     info: $info,
-//     warning: $warning,
-//     danger: $danger,
-//     light: $light,
-//     dark: $dark,
+    primary: $primary,
+    secondary: $secondary,
+    light: $lightblue,
+    dark: $darkblue,
+    white: $white,
+    coral: $coral,
+    cyan: $lightcyan
 //     // add any additional color below
 );
 
@@ -37,32 +33,31 @@ $theme-colors: (
 @import '~bootstrap/scss/bootstrap.scss';
 
 body {
-    background: $body-bg;
+    background: $white;
     font-family: $roboto;
 }
 
 .header {
     padding: 25px 0;
-    text-align: center;
-    background: $midnightblue;
+    background: $primary;
 }
 
-.header img {
+.kuri-logo {
+    display: inline-block;
     width: 200px;
     height: 26px;
 }
 
-// .footer {
-//   padding: 25px 0;
-//   text-align: center;
-//   background: midnightblue;
-// }
+.github-logo {
+    float: right;
+    margin: 0px 120px 0px 0px;
+}
 
 .footer {
     // margin-top: 1rem;
     // padding: 1rem;
     height: 30px;
-    background-color: $midnightblue;
+    background-color: $primary;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -72,3 +67,27 @@ body {
 .message-table {
     padding: 2rem;
 }
+
+.table-row {
+    color: $primary;
+    border-bottom: 0.25px solid $lightblue;
+}
+
+.header-row {
+    color: $secondary;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+tr:hover td.cell {
+    background: $lightblue;
+    color: $coral;
+}
+
+// tr {
+//     border-bottom: 0.25px solid $lightblue;
+// }
+
+// thead tr {
+//     border-bottom: 0.5px solid $coral;
+// }
