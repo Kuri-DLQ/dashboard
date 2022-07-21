@@ -26,12 +26,24 @@ const App = () => {
 
     const eventSource = new EventSource(`${baseUrl}/table/sse`);
     eventSource.onmessage = (e) => {
-      setMessageCount(parseInt(e.data, 10));
+      let results = JSON.parse(e.data);
+      console.log('results:', results);
+      console.log('type: ', typeof results);
+      // let stringifiedResults = results.map(mess => {
+      //   let type = typeof mess;
+      //   console.log('type of mess: ', type);
+      //   return mess;
+      //   // return JSON.stringify(message);
+      // });
+      setMessages(results);
+      setMessageCount(results.length);
+      // results: [{"Message":"modified test with string jul 21, 4th","Attributes":"{\"order\":{\"Type\":\"Number\",\"Value\":\"4\"}}","id":"354c8c47-5dac-59ca-bd29-d7149bfa3be6"}, ...
+      // setMessageCount(parseInt(e.data, 10));
     }
     // return () => {
     //   eventSource.close();
     // };
-  }, [messageCount])
+  }, [])
 
   const filterMessages = (id) => {
     const updatedMessageList = messages.filter(message => {
