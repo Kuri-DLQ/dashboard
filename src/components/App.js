@@ -4,9 +4,12 @@ import messageService from "../services/messageService";
 import TableItems from './TableItems';
 import Header from "./Header";
 import Footer from "./Footer";
+import ServerSent from "./ServerSent";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
+  const [serverMessage, setServerMessage] = useState("test message");
+  const baseUrl = "http://localhost:5001";
 
   useEffect(() => {
     const run = async () => {
@@ -19,6 +22,15 @@ const App = () => {
     }
 
     run();
+
+    const eventSource = new EventSource(`${baseUrl}/table/sse`);
+    eventSource.onmessage = (e) => {
+      console.log(e.data);
+      setServerMessage(e.data);
+    }
+    // return () => {
+    //   eventSource.close();
+    // };
   }, [])
 
   const filterMessages = (id) => {
@@ -57,6 +69,7 @@ const App = () => {
   return (
     <div>
       <Header />
+      <ServerSent serverMessage={serverMessage}/>
       <TableItems
         messages={messages}
         setMessages={setMessages}
