@@ -12,7 +12,7 @@ const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, on
   }
 
   return (
-    <div>
+    <div className="message-table">
     <Table bordered hover>
       <thead>
           <tr>

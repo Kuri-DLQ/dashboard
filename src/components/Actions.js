@@ -35,9 +35,9 @@ const Actions = ({ message, messages, handleShowModalForm, showModalForm, setMes
             message={message}
             onDelete={onDelete} />
               {/* <Dropdown.Item onClick={() => onDelete(message.id)}>Delete</Dropdown.Item> */ }
-              < Redrive
-              message={message}
-              onResend={onResend} />
+          < Redrive
+          message={message}
+          onResend={onResend} />
           {/* <Dropdown.Item onClick={() => onResend(message)}>Redrive</Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>

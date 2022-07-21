@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import tableService from '../services/tableService';
 import messageService from "../services/messageService";
 import TableItems from './TableItems';
+import Header from "./Header";
+import Footer from "./Footer";
 
-function App() {
+const App = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -54,6 +56,7 @@ function App() {
 
   return (
     <div>
+      <Header />
       <TableItems
         messages={messages}
         setMessages={setMessages}
@@ -62,6 +65,7 @@ function App() {
         onDeleteAll={handleDeleteAll}
         onResendAll={handleResendAll}
       />
+      <Footer />
     </div>
   );
 }
