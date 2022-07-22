@@ -1,11 +1,11 @@
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Row from './Row';
 
 const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, onResendAll }) => {
   return (
-    <div className="message-table w-auto">
-    <Table className="table-items" w-auto>
+    <div className="message-table">
+    <Table className="table-items">
       <thead>
           <tr className='header-row'>
             <th>Message ID</th>
@@ -25,10 +25,10 @@ const TableItems = ({ messages, setMessages, onDelete, onDeleteAll, onResend, on
           })}
       </tbody>
       </Table>
-      <div>
+      {/* <div>
         <Button variant="primary" onClick={onDeleteAll}>Delete All</Button>
         <Button variant="primary" onClick={onResendAll}>Redrive All</Button>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -7,7 +7,7 @@ const Actions = ({ message, messages, setMessages, onResend, onDelete }) => {
   return (
     <div>
       <Dropdown>
-        <Dropdown.Toggle variant="primary" id="dropdown-basic"></Dropdown.Toggle>
+        <Dropdown.Toggle size="sm" className="dropdown-toggle" variant="primary"></Dropdown.Toggle>
         <Dropdown.Menu>
           <View
           message={message}
