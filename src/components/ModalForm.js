@@ -4,15 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const ModalForm = ({ selectedMessage, setSelectedMessage, messages, handleShowModalForm, showModalForm, setMessages, onResend }) => {
-  console.log("from modal:", selectedMessage)
+const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages, showModalForm, handleShowModalForm, onResend }) => {
   const [body, setBody] = useState(selectedMessage.Message);
   const [attributes, setAttributes] = useState(selectedMessage.Attributes);
 
   const handleModalClose = () => {
-    console.log('before close:', showModalForm)
     handleShowModalForm();
-    console.log('after close:', showModalForm)
     setSelectedMessage([]);
   }
 

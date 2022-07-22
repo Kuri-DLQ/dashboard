@@ -6,4 +6,4 @@ const Redrive = ({ message, onResend }) => {
   )
 }
 
-export default Redrive
+export default Redrive;
