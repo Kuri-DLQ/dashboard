@@ -26,7 +26,6 @@ $theme-colors: (
     white: $white,
     coral: $coral,
     cyan: $lightcyan
-//     // add any additional color below
 );
 
 // Import Bootstrap and its default variables
@@ -37,17 +36,52 @@ body {
     font-family: $roboto;
 }
 
+.table-info {
+    margin: 25px 30px 100px 30px;
+    color: $primary;
+}
+
+.kuri-icon {
+    // margin-top: 50px;
+    // margin-left: 40px;
+    // border: 1px solid $primary;
+    float: left;
+    // width: 100px;
+    height: 100px;
+}
+
+.clear-div {
+    clear: right;
+}
+
+.table-info-text {
+    float: right;
+}
+
+.table-info-button {
+    float: right;
+
+}
+
+.table-info-button:hover {
+    background-color: $secondary;
+}
+
+.delete {
+    margin-left: 10px;
+}
+
 .header {
     padding: 25px 0;
-    // background-image: url('./assets/PNG/color/gradient_rectangle.png');
-    // background-repeat: no-repeat;
-    // background-size: 2000px 100px;
-    background: $primary;
+    background-image: url('./assets/PNG/color/gradient_rectangle.png');
+    background-repeat: no-repeat;
+    background-size: 2000px 100px;
+    // background: $primary;
 }
 
 .kuri-logo {
     display: inline-block;
-    width: 115px;
+    margin-left: 30px;
     height: 26px;
 }
 
@@ -61,6 +95,8 @@ body {
     // padding: 1rem;
     height: 30px;
     background-color: $primary;
+    // background-color: $secondary;
+    // background-color: $darkblue;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -79,10 +115,12 @@ body {
 .table-row {
     color: $primary;
     border-bottom: 0.25px solid $lightblue;
+    font-size: 14px;
 }
 
 .header-row {
-    color: $secondary;
+    color: $primary;
+    // color: $secondary;
     font-weight: 800;
     font-size: 18px;
 }
@@ -109,4 +147,19 @@ td.message-body {
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 500px;
+}
+
+.dropdown-toggle:selected {
+    color: $secondary
+}
+
+.dropdown-item {
+    font-family: $roboto;
+    color: $primary;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: $primary;
+    color: $white;
 }

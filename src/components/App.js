@@ -71,14 +71,18 @@ const App = () => {
   return (
     <div>
       <Header />
-      <TableInfo messageCount={messageCount} />
+      <TableInfo
+        messageCount={messageCount}
+        onDeleteAll={handleDeleteAll}
+        onResendAll={handleResendAll}
+      />
       <TableItems
         messages={messages}
         setMessages={setMessages}
         onDelete={handleDelete}
         onResend={handleResend}
-        onDeleteAll={handleDeleteAll}
-        onResendAll={handleResendAll}
+        // onDeleteAll={handleDeleteAll}
+        // onResendAll={handleResendAll}
       />
       <Footer />
     </div>
