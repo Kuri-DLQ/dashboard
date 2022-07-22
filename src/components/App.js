@@ -4,21 +4,35 @@ import messageService from "../services/messageService";
 import TableItems from './TableItems';
 import Header from "./Header";
 import Footer from "./Footer";
+import TableInfo from "./TableInfo";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
+  const [messageCount, setMessageCount] = useState(0);
+  const baseUrl = "http://localhost:5001";
 
   useEffect(() => {
     const run = async () => {
       try {
         const result = await tableService.getAllMessages();
         setMessages(result.data);
+        setMessageCount(result.data.length);
       } catch (err) {
         console.error(err);
       }
     }
 
     run();
+
+    const eventSource = new EventSource(`${baseUrl}/table/sse`);
+    eventSource.onmessage = (e) => {
+      let results = JSON.parse(e.data);
+      setMessages(results);
+      setMessageCount(results.length);
+    }
+    // return () => {
+    //   eventSource.close();
+    // };
   }, [])
 
   const filterMessages = (id) => {
@@ -57,6 +71,7 @@ const App = () => {
   return (
     <div>
       <Header />
+      <TableInfo messageCount={messageCount} />
       <TableItems
         messages={messages}
         setMessages={setMessages}
