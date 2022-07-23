@@ -24,10 +24,13 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
   const handleUpdateAndSave = async (e) => {
     e.preventDefault();
 
+    console.log("date:", (typeof selectedMessage.Timestamp));
+
     const updatedMessage = {
       id: selectedMessage.id,
       Message: body,
       Attributes: JSON.parse(attributes),
+      Timestamp: selectedMessage.Timestamp,
     }
 
     await messageService.updateMessage(selectedMessage.id, updatedMessage);
@@ -72,25 +75,32 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
     <>
       <Modal show={showModalForm} onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Message details</Modal.Title>
+          <Modal.Title className="modalTitle">Message details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form className="modalForm">
             <Form.Group
               className="mb-3"
-              controlId="id"
             >
               <Form.Label>Message ID</Form.Label>
               <div>
-                <Form.Text>{selectedMessage.id}</Form.Text>
+                <Form.Text className="messageID">{selectedMessage.id}</Form.Text>
               </div>
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="body"
+            >
+              <Form.Label>Message Timestamp</Form.Label>
+              <div>
+                <Form.Text className="messageTimestamp">{selectedMessage.Timestamp}</Form.Text>
+              </div>
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
             >
               <Form.Label>Message Body</Form.Label>
               <Form.Control
+                className="messageBody"
                 as="textarea"
                 rows={3}
                 value={body}
@@ -99,10 +109,10 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="attributes"
             >
               <Form.Label>Message Attributes</Form.Label>
               <Form.Control
+                className="messageAttributes"
                 as="textarea"
                 rows={3}
                 value={attributes}

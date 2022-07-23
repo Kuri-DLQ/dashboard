@@ -83,8 +83,6 @@ const App = () => {
         setMessages={setMessages}
         onDelete={handleDelete}
         onResend={handleResend}
-        // onDeleteAll={handleDeleteAll}
-        // onResendAll={handleResendAll}
       />
       <Footer />
     </div>

@@ -10,17 +10,17 @@ const Actions = ({ message, messages, setMessages, onResend, onDelete }) => {
         <Dropdown.Toggle size="sm" className="dropdown-toggle" variant="primary"></Dropdown.Toggle>
         <Dropdown.Menu>
           <View
-          message={message}
-          messages={messages}
-          setMessages={setMessages}
-          onDelete={onDelete}
-          onResend={onResend} />
+            message={message}
+            messages={messages}
+            setMessages={setMessages}
+            onDelete={onDelete}
+            onResend={onResend} />
           <Delete
-          message={message}
-          onDelete={onDelete} />
+            message={message}
+            onDelete={onDelete} />
           < Redrive
-          message={message}
-          onResend={onResend} />
+            message={message}
+            onResend={onResend} />
         </Dropdown.Menu>
       </Dropdown>
     </div>
