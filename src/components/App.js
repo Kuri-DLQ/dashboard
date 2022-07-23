@@ -48,6 +48,7 @@ const App = () => {
 
     const updatedMessageList = filterMessages(id)
     setMessages(updatedMessageList);
+    setMessageCount(updatedMessageList.length);
   }
 
   const handleResend = async (messageToResend) => {
@@ -56,6 +57,7 @@ const App = () => {
 
     const updatedMessageList = filterMessages(messageToResend.id)
     setMessages(updatedMessageList);
+    setMessageCount(updatedMessageList.length);
   }
 
   const handleDeleteAll = async () => {
