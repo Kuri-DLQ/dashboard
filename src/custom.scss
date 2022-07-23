@@ -37,7 +37,7 @@ body {
 }
 
 .table-info {
-    margin: 25px 30px 100px 30px;
+    margin: 40px 30px 50px 30px;
     color: $primary;
 }
 
@@ -60,7 +60,6 @@ body {
 
 .table-info-button {
     float: right;
-
 }
 
 .table-info-button:hover {
@@ -131,14 +130,18 @@ tr:hover td.cell {
 }
 
 td:nth-child(1) {
-    width: 250px;
+    width: 275px;
 }
 
 td:nth-child(2) {
-    width: 600px;
+    width: 200px;
 }
 
 td:nth-child(3) {
+    width: 500px;
+}
+
+td:nth-child(4) {
     width: 10px;
 }
 
@@ -147,10 +150,6 @@ td.message-body {
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 500px;
-}
-
-.dropdown-toggle:selected {
-    color: $secondary
 }
 
 .dropdown-item {
@@ -162,4 +161,35 @@ td.message-body {
 .dropdown-item:hover {
     background-color: $primary;
     color: $white;
+}
+
+.modalForm, .modalTitle {
+    font-family: $roboto;
+    color: $primary;
+    font-weight: bolder;
+}
+
+.modalTitle {
+    font-size: 20px;
+}
+
+.modalForm {
+    font-size: 18px;
+}
+
+.messageBody, .messageAttributes {
+    font-family: $roboto;
+    color: $darkblue;
+}
+
+.messageID, .messageTimestamp {
+    color: $secondary;
+}
+
+.messageBody:focus, .messageAttributes:focus {
+    color: $darkblue;
+}
+
+.pagination {
+    justify-content: center;
 }
