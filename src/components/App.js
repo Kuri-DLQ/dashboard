@@ -5,11 +5,20 @@ import TableItems from './TableItems';
 import Header from "./Header";
 import Footer from "./Footer";
 import TableInfo from "./TableInfo";
+import TablePagination from "./Pagination";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [messageCount, setMessageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(10);
   const baseUrl = "http://localhost:5001";
+
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentMessages = messages.slice(indexOfFirstRecord, indexOfLastRecord);
+  const nPages = Math.ceil(messages.length / recordsPerPage)
+
 
   useEffect(() => {
     const run = async () => {
@@ -80,9 +89,15 @@ const App = () => {
       />
       <TableItems
         messages={messages}
+        currentMessages={currentMessages}
         setMessages={setMessages}
         onDelete={handleDelete}
         onResend={handleResend}
+      />
+      <TablePagination
+          nPages={nPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
       />
       <Footer />
     </div>

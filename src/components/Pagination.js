@@ -1,25 +1,46 @@
-import Pagination from 'react-bootstrap/Pagination';
-
-const TablePagination = () => {
+const TablePagination = ({ nPages, currentPage, setCurrentPage }) => {
+  const pageNumbers = [...Array(nPages + 1).keys()].slice(1)
+    
+  const nextPage = () => {
+    if (currentPage !== nPages) {
+      return setCurrentPage(currentPage + 1)
+    }
+  }
+  const prevPage = () => {
+    if (currentPage !== 1) {
+      return setCurrentPage(currentPage - 1)
+    }
+  }
+  
   return (
-    <Pagination className="pagination">
-      <Pagination.First />
-      <Pagination.Prev />
-      <Pagination.Item>{1}</Pagination.Item>
-      <Pagination.Ellipsis />
-
-      <Pagination.Item>{10}</Pagination.Item>
-      <Pagination.Item>{11}</Pagination.Item>
-      <Pagination.Item active>{12}</Pagination.Item>
-      <Pagination.Item>{13}</Pagination.Item>
-      <Pagination.Item disabled>{14}</Pagination.Item>
-
-      <Pagination.Ellipsis />
-      <Pagination.Item>{20}</Pagination.Item>
-      <Pagination.Next />
-      <Pagination.Last />
-    </Pagination>
-  );
+    <nav>
+      <ul className='pagination justify-content-center'>
+        <li className="page-item">
+          <a className="page-link" 
+              onClick={prevPage} 
+              href='/#'>
+              Previous
+          </a>
+        </li>
+        {pageNumbers.map(pgNumber => (
+          <li key={pgNumber} className= {`page-item ${currentPage === pgNumber ? 'active' : ''} `} >
+            <a onClick={() => setCurrentPage(pgNumber)}  
+              className='page-link' 
+              href='/#'>
+              {pgNumber}
+            </a>
+          </li>
+        ))}
+        <li className="page-item">
+          <a className="page-link" 
+            onClick={nextPage}
+            href='/#'> 
+            Next
+          </a>
+        </li>
+      </ul>
+    </nav>
+  )
 }
 
-export default TablePagination;
+export default TablePagination

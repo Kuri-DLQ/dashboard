@@ -190,6 +190,7 @@ td.message-body {
     color: $darkblue;
 }
 
-.pagination {
-    justify-content: center;
+.dropdown-toggle:active, .dropdown-toggle:focus{
+    outline: none !important;
+    outline-offset: none !important;
 }

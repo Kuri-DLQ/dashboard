@@ -2,7 +2,7 @@ import Table from 'react-bootstrap/Table';
 // import Button from 'react-bootstrap/Button';
 import Row from './Row';
 
-const TableItems = ({ messages, setMessages, onDelete, onResend}) => {
+const TableItems = ({ messages, setMessages, currentMessages,onDelete, onResend}) => {
   return (
     <div className="message-table">
     <Table className="table-items">
@@ -15,7 +15,7 @@ const TableItems = ({ messages, setMessages, onDelete, onResend}) => {
         </tr>
       </thead>
         <tbody>
-          {messages.map(message => {
+          {currentMessages.map(message => {
             return <Row
               key={message.id}
               message={message}
