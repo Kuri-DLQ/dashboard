@@ -9,9 +9,8 @@ import TablePagination from "./Pagination";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
-  // // const [messageCount, setMessageCount] = useState(0);
-  // instead of state, keep message count separate in a variable
   const [sortFactor, setSortFactor] = useState('');
+  const [ascending, setAscending] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
   const baseUrl = "http://localhost:5001";
@@ -29,10 +28,10 @@ const App = () => {
 
     const sortedMessages = copyOfMessages.sort((a, b) => {
       if (a[sortFactor] < b[sortFactor]) {
-        return -1;
+        return ascending ? -1 : 1;
       }
       if (a[sortFactor] > b[sortFactor]) {
-        return 1;
+        return ascending ? 1 : -1;
       }
       return 0;
     });
@@ -53,8 +52,6 @@ const App = () => {
       try {
         const result = await tableService.getAllMessages();
         setMessages(result.data);
-        // setMessages(handleSortMessages(result.data));
-        // // setMessageCount(result.data.length);
       } catch (err) {
         console.error(err);
       }
@@ -69,9 +66,7 @@ const App = () => {
       console.log('sse');
       console.log('sortFactor', sortFactor);
       let results = JSON.parse(e.data);
-      // let sortedResults = handleSortMessages(results);
       setMessages(results);
-      // setMessageCount(results.length);
     }
     return () => {
       console.log('closing');
@@ -93,7 +88,6 @@ const App = () => {
 
     const updatedMessageList = filterMessages(id)
     setMessages(updatedMessageList);
-    // setMessageCount(updatedMessageList.length);
   }
 
   const handleResend = async (messageToResend) => {
@@ -102,7 +96,6 @@ const App = () => {
 
     const updatedMessageList = filterMessages(messageToResend.id)
     setMessages(updatedMessageList);
-    // setMessageCount(updatedMessageList.length);
   }
 
   const handleDeleteAll = async () => {
@@ -131,6 +124,7 @@ const App = () => {
         onResend={handleResend}
         onSort={handleSortMessages}
         setSortFactor={setSortFactor}
+        setAscending={setAscending}
       />
       <TablePagination
           nPages={nPages}
