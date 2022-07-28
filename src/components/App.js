@@ -9,7 +9,8 @@ import TablePagination from "./Pagination";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
-  const [messageCount, setMessageCount] = useState(0);
+  // // const [messageCount, setMessageCount] = useState(0);
+  // instead of state, keep message count separate in a variable
   const [sortFactor, setSortFactor] = useState('');
   // const [currentPage, setCurrentPage] = useState(1);
   // const [recordsPerPage] = useState(10);
@@ -20,33 +21,7 @@ const App = () => {
   // const currentMessages = messages.slice(indexOfFirstRecord, indexOfLastRecord);
   // const nPages = Math.ceil(messages.length / recordsPerPage)
 
-
-  useEffect(() => {
-    const run = async () => {
-      try {
-        const result = await tableService.getAllMessages();
-        // setMessages(result.data);
-        setMessages(handleSortMessages(result.data));
-        setMessageCount(result.data.length);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    run();
-
-    const eventSource = new EventSource(`${baseUrl}/table/sse`);
-    eventSource.onmessage = (e) => {
-      console.log('sse');
-      console.log('sortFactor', sortFactor);
-      let results = JSON.parse(e.data);
-      setMessages(handleSortMessages(results));
-      setMessageCount(results.length);
-    }
-    // return () => {
-    //   eventSource.close();
-    // };
-  }, [])
+  const messageCount = messages.length;
 
   const handleSortMessages = (mess) => {
     let copyOfMessages = [...mess];
@@ -68,6 +43,42 @@ const App = () => {
     return sortedMessages;
   }
 
+
+  const sortedMessages = handleSortMessages(messages);
+
+
+  useEffect(() => {
+    const run = async () => {
+      try {
+        const result = await tableService.getAllMessages();
+        setMessages(result.data);
+        // setMessages(handleSortMessages(result.data));
+        // // setMessageCount(result.data.length);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    run();
+  }, [])
+
+  useEffect(() => {
+    const eventSource = new EventSource(`${baseUrl}/table/sse`);
+    eventSource.onmessage = (e) => {
+      console.log('sse');
+      console.log('sortFactor', sortFactor);
+      let results = JSON.parse(e.data);
+      // let sortedResults = handleSortMessages(results);
+      setMessages(results);
+      // setMessageCount(results.length);
+    }
+    return () => {
+      console.log('closing');
+      eventSource.close();
+    };
+  }, [])
+
+
   const filterMessages = (id) => {
     const updatedMessageList = messages.filter(message => {
       return message.id !== id;
@@ -81,7 +92,7 @@ const App = () => {
 
     const updatedMessageList = filterMessages(id)
     setMessages(updatedMessageList);
-    setMessageCount(updatedMessageList.length);
+    // setMessageCount(updatedMessageList.length);
   }
 
   const handleResend = async (messageToResend) => {
@@ -90,7 +101,7 @@ const App = () => {
 
     const updatedMessageList = filterMessages(messageToResend.id)
     setMessages(updatedMessageList);
-    setMessageCount(updatedMessageList.length);
+    // setMessageCount(updatedMessageList.length);
   }
 
   const handleDeleteAll = async () => {
@@ -112,7 +123,7 @@ const App = () => {
         onResendAll={handleResendAll}
       />
       <TableItems
-        messages={messages}
+        messages={sortedMessages}
         // currentMessages={currentMessages}
         setMessages={setMessages}
         onDelete={handleDelete}
