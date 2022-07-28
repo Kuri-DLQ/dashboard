@@ -12,8 +12,8 @@ const App = () => {
   // // const [messageCount, setMessageCount] = useState(0);
   // instead of state, keep message count separate in a variable
   const [sortFactor, setSortFactor] = useState('');
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [recordsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(10);
   const baseUrl = "http://localhost:5001";
 
 
@@ -42,10 +42,10 @@ const App = () => {
 
   const sortedMessages = handleSortMessages(messages);
 
-  // const indexOfLastRecord = currentPage * recordsPerPage;
-  // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  // const currentMessages = sortedMessages.slice(indexOfFirstRecord, indexOfLastRecord);
-  // const nPages = Math.ceil(messages.length / recordsPerPage)
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentMessages = sortedMessages.slice(indexOfFirstRecord, indexOfLastRecord);
+  const nPages = Math.ceil(messages.length / recordsPerPage)
 
 
   useEffect(() => {
@@ -125,18 +125,18 @@ const App = () => {
       />
       <TableItems
         messages={sortedMessages}
-        // currentMessages={currentMessages}
+        currentMessages={currentMessages}
         setMessages={setMessages}
         onDelete={handleDelete}
         onResend={handleResend}
         onSort={handleSortMessages}
         setSortFactor={setSortFactor}
       />
-      {/* <TablePagination
+      <TablePagination
           nPages={nPages}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-      /> */}
+      />
       <Footer />
     </div>
   );

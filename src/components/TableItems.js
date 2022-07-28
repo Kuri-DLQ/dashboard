@@ -18,13 +18,21 @@ const TableItems = ({ messages, setMessages, currentMessages,onDelete, onResend,
               Message Timestamp
               </button>
             </th>
-            <th>Message Body</th>
+            <th>
+              <button type="button" onClick={() => {
+                  setSortFactor('Message');
+                  setMessages(onSort(messages));
+                  }
+                  }>
+                Message Body
+              </button>
+            </th>
             <th>Action</th>
         </tr>
       </thead>
         <tbody>
-          {messages.map(message => {
-          {/* {currentMessages.map(message => { */}
+          {/* {messages.map(message => { */}
+          {currentMessages.map(message => {
             return <Row
               key={message.id}
               message={message}
