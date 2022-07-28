@@ -16,10 +16,6 @@ const App = () => {
   // const [recordsPerPage] = useState(10);
   const baseUrl = "http://localhost:5001";
 
-  // const indexOfLastRecord = currentPage * recordsPerPage;
-  // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  // const currentMessages = messages.slice(indexOfFirstRecord, indexOfLastRecord);
-  // const nPages = Math.ceil(messages.length / recordsPerPage)
 
   const messageCount = messages.length;
 
@@ -45,6 +41,11 @@ const App = () => {
 
 
   const sortedMessages = handleSortMessages(messages);
+
+  // const indexOfLastRecord = currentPage * recordsPerPage;
+  // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  // const currentMessages = sortedMessages.slice(indexOfFirstRecord, indexOfLastRecord);
+  // const nPages = Math.ceil(messages.length / recordsPerPage)
 
 
   useEffect(() => {
