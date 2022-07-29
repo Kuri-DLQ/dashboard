@@ -16,15 +16,13 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
   const handleBodyChange = (e) => {
     setBody(e.target.value);
   };
-  
+
   const handleAttributesChange = (e) => {
     setAttributes(e.target.value);
   };
 
   const handleUpdateAndSave = async (e) => {
     e.preventDefault();
-
-    console.log("date:", (typeof selectedMessage.Timestamp));
 
     const updatedMessage = {
       id: selectedMessage.id,
@@ -34,6 +32,7 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
     }
 
     await messageService.updateMessage(selectedMessage.id, updatedMessage);
+
     const updatedMessages = messages.map(msg => {
       if (msg.id === selectedMessage.id) {
         updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
@@ -56,13 +55,16 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
       id: selectedMessage.id,
       Message: body,
       Attributes: JSON.parse(attributes),
+      Timestamp: selectedMessage.Timestamp,
     }
 
     await messageService.updateMessage(selectedMessage.id, updatedMessage);
-    
+
     updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
 
     onResend(updatedMessage);
+
+    clearFields();
     handleShowModalForm();
   }
 
