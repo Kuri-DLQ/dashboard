@@ -86,7 +86,6 @@ const App = () => {
   }
 
   const handleResend = async (messageToResend) => {
-    console.log('inside handle resend', messageToResend);
     await messageService.resendMessage(messageToResend)
     await handleDelete(messageToResend.id);
 
