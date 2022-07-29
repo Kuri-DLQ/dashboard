@@ -20,8 +20,6 @@ const App = () => {
 
   const handleSortMessages = (mess) => {
     let copyOfMessages = [...mess];
-    console.log('inside sort');
-    console.log('sortFactor', sortFactor);
     if (sortFactor === '') {
       return copyOfMessages;
     }
@@ -63,13 +61,10 @@ const App = () => {
   useEffect(() => {
     const eventSource = new EventSource(`${baseUrl}/table/sse`);
     eventSource.onmessage = (e) => {
-      console.log('sse');
-      console.log('sortFactor', sortFactor);
       let results = JSON.parse(e.data);
       setMessages(results);
     }
     return () => {
-      console.log('closing');
       eventSource.close();
     };
   }, [])
@@ -91,6 +86,7 @@ const App = () => {
   }
 
   const handleResend = async (messageToResend) => {
+    console.log('inside handle resend', messageToResend);
     await messageService.resendMessage(messageToResend)
     await handleDelete(messageToResend.id);
 

@@ -16,7 +16,7 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
   const handleBodyChange = (e) => {
     setBody(e.target.value);
   };
-  
+
   const handleAttributesChange = (e) => {
     setAttributes(e.target.value);
   };
@@ -24,7 +24,7 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
   const handleUpdateAndSave = async (e) => {
     e.preventDefault();
 
-    console.log("date:", (typeof selectedMessage.Timestamp));
+    // console.log("date:", (typeof selectedMessage.Timestamp));
 
     const updatedMessage = {
       id: selectedMessage.id,
@@ -34,6 +34,9 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
     }
 
     await messageService.updateMessage(selectedMessage.id, updatedMessage);
+    console.log('inside update and save');
+    console.log("selected id", selectedMessage.id);
+    console.log('updated message', updatedMessage);
     const updatedMessages = messages.map(msg => {
       if (msg.id === selectedMessage.id) {
         updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
@@ -59,10 +62,26 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
     }
 
     await messageService.updateMessage(selectedMessage.id, updatedMessage);
-    
-    updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
+    console.log('inside update and resend');
+    console.log("selected id for resend", selectedMessage.id);
+    console.log('updated message for resend', updatedMessage);
 
+    // updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
+
+    const updatedMessages = messages.map(msg => {
+      if (msg.id === selectedMessage.id) {
+        updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
+        return updatedMessage;
+      } else {
+        return msg;
+      }
+    })
+
+    setMessages(updatedMessages);
+
+    console.log('before onresend', updatedMessage);
     onResend(updatedMessage);
+    clearFields();
     handleShowModalForm();
   }
 
