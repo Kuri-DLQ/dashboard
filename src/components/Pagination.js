@@ -14,9 +14,9 @@ const TablePagination = ({ nPages, currentPage, setCurrentPage }) => {
   
   return (
     <nav>
-      <ul style={{ position: "relative" }} className='pagination justify-content-center'>
-        <li className="page-item">
-          <a className="page-link" 
+      <ul className='pagination justify-content-center'>
+        <li className='page-item'>
+          <a className='page-link' 
               onClick={prevPage} 
               href='/#'>
               Previous
@@ -31,8 +31,8 @@ const TablePagination = ({ nPages, currentPage, setCurrentPage }) => {
             </a>
           </li>
         ))}
-        <li className="page-item">
-          <a className="page-link" 
+        <li className='page-item'>
+          <a className='page-link' 
             onClick={nextPage}
             href='/#'> 
             Next

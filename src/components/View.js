@@ -18,7 +18,7 @@ const View = ({ message, messages, setMessages, onResend }) => {
 
   return (
     <div>
-    <Dropdown.Item className="dropdown-item" onClick={() => handleShowModal(message.id)}>View details</Dropdown.Item>
+    <Dropdown.Item className='dropdown-item' onClick={() => handleShowModal(message.id)}>View details</Dropdown.Item>
       {showModalForm && (<ModalForm
         selectedMessage={selectedMessage}
         setSelectedMessage={setSelectedMessage}

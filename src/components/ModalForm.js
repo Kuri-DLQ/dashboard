@@ -35,7 +35,7 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
 
     const updatedMessages = messages.map(msg => {
       if (msg.id === selectedMessage.id) {
-        updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
+        updatedMessage['Attributes'] = JSON.stringify(updatedMessage['Attributes']);
         return updatedMessage;
       } else {
         return msg;
@@ -60,7 +60,7 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
 
     await messageService.updateMessage(selectedMessage.id, updatedMessage);
 
-    updatedMessage["Attributes"] = JSON.stringify(updatedMessage["Attributes"]);
+    updatedMessage['Attributes'] = JSON.stringify(updatedMessage['Attributes']);
 
     onResend(updatedMessage);
 
@@ -77,45 +77,45 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
     <>
       <Modal show={showModalForm} onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title className="modalTitle">Message details</Modal.Title>
+          <Modal.Title className='modalTitle'>Message details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="modalForm">
+          <Form className='modalForm'>
             <Form.Group
-              className="mb-3"
+              className='mb-3'
             >
               <Form.Label>Message ID</Form.Label>
               <div>
-                <Form.Text className="messageID">{selectedMessage.id}</Form.Text>
+                <Form.Text className='messageID'>{selectedMessage.id}</Form.Text>
               </div>
             </Form.Group>
             <Form.Group
-              className="mb-3"
+              className='mb-3'
             >
               <Form.Label>Message Timestamp</Form.Label>
               <div>
-                <Form.Text className="messageTimestamp">{selectedMessage.Timestamp}</Form.Text>
+                <Form.Text className='messageTimestamp'>{selectedMessage.Timestamp}</Form.Text>
               </div>
             </Form.Group>
             <Form.Group
-              className="mb-3"
+              className='mb-3'
             >
               <Form.Label>Message Body</Form.Label>
               <Form.Control
-                className="messageBody"
-                as="textarea"
+                className='messageBody'
+                as='textarea'
                 rows={3}
                 value={body}
                 onChange={handleBodyChange}
               />
             </Form.Group>
             <Form.Group
-              className="mb-3"
+              className='mb-3'
             >
               <Form.Label>Message Attributes</Form.Label>
               <Form.Control
-                className="messageAttributes"
-                as="textarea"
+                className='messageAttributes'
+                as='textarea'
                 rows={3}
                 value={attributes}
                 onChange={handleAttributesChange}
@@ -124,13 +124,13 @@ const ModalForm = ({ selectedMessage, setSelectedMessage, messages, setMessages,
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleUpdateAndSave}>
+          <Button variant='primary' onClick={handleUpdateAndSave}>
             Update and save
           </Button>
-          <Button variant="primary" onClick={handleUpdateAndResend}>
+          <Button variant='primary' onClick={handleUpdateAndResend}>
             Update and redrive
           </Button>
-          <Button variant="secondary" onClick={handleModalClose}>
+          <Button variant='secondary' onClick={handleModalClose}>
             Cancel
           </Button>
         </Modal.Footer>

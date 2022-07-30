@@ -185,7 +185,7 @@ td:nth-child(1) {
 }
 
 td:nth-child(2) {
-    width: 200px;
+    width: 250px;
 }
 
 td:nth-child(3) {
@@ -212,6 +212,16 @@ td.message-body {
 .dropdown-item:hover {
     background-color: $primary;
     color: $white;
+}
+
+.arrow {
+    margin-left: 5px;
+    border: solid $primary;
+    border-width: 0 3px 3px 0;
+}
+
+.down {
+    transform: rotate(45deg)
 }
 
 .modalForm, .modalTitle {
@@ -248,4 +258,22 @@ td.message-body {
     bottom: 0;
     left: 0;
     width: 100%;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+a:focus {
+    box-shadow: none !important;
+}
+
+.btn:hover, a:hover {
+    color: $coral !important;
+}
+
+ul {
+    position: fixed;
+    top: 92%;
+    left: 40%
 }

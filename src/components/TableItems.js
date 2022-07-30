@@ -1,11 +1,15 @@
 import Table from 'react-bootstrap/Table';
-// import Button from 'react-bootstrap/Button';
 import Row from './Row';
 
-const TableItems = ({ messages, setMessages, currentMessages,onDelete, onResend, onSort, setSortFactor, setAscending}) => {
+const TableItems = ({ messages, setMessages, currentMessages, ascending, onDelete, onResend, onSort, setSortFactor, setAscending}) => {
+  const handleSetArrow = (e) => {
+    e.preventDefault();
+    e.target.classList.toggle('down')
+  }
+  
   return (
-    <div className="message-table">
-    <Table className="table-items">
+    <div className='message-table'>
+    <Table className='table-items'>
       <thead>
           <tr className='header-row'>
             <th>
@@ -13,39 +17,23 @@ const TableItems = ({ messages, setMessages, currentMessages,onDelete, onResend,
             </th>
             <th>
               Message Timestamp
-
-              <button type="button" onClick={() => {
-                  setSortFactor('Timestamp');
-                  setAscending(false);
-                  setMessages(onSort(messages));
-                  }
-                  }><i class="arrow up"></i>
-              </button>
-              <button type="button" onClick={() => {
-                  setSortFactor('Timestamp');
-                  setAscending(true);
-                  setMessages(onSort(messages));
-                  }
-                  }><i class="arrow down"></i>
-              </button>
+              <i className='arrow up' onClick={(e) => {
+                handleSetArrow(e);
+                setSortFactor('Timestamp');
+                setAscending(!ascending);
+                setMessages(onSort(messages));
+                }
+              }></i>
             </th>
             <th>
               Message Body
-
-              <button type="button" onClick={() => {
-                  setSortFactor('Message');
-                  setAscending(false);
-                  setMessages(onSort(messages));
-                  }
-                  }><i class="arrow up"></i>
-              </button>
-              <button type="button" onClick={() => {
-                  setSortFactor('Message');
-                  setAscending(true);
-                  setMessages(onSort(messages));
-                  }
-                  }><i class="arrow down"></i>
-              </button>
+              <i className='arrow up' onClick={(e) => {
+                handleSetArrow(e);
+                setSortFactor('Message');
+                setAscending(!ascending);
+                setMessages(onSort(messages));
+                }
+              }></i>
             </th>
             <th>Action</th>
         </tr>
