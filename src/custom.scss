@@ -260,15 +260,11 @@ td.message-body {
     width: 100%;
 }
 
-.btn:focus {
+.btn:focus, .page-link:focus {
     box-shadow: none !important;
 }
 
-a:focus {
-    box-shadow: none !important;
-}
-
-.btn:hover, a:hover {
+.btn:hover, .page-link:hover {
     color: $coral !important;
 }
 
