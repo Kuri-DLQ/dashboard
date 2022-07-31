@@ -214,6 +214,11 @@ td.message-body {
     color: $white;
 }
 
+// .up {
+//     position: absolute;
+//     margin-top: 6px;
+// }
+
 .arrow {
     margin-left: 5px;
     border: solid $primary;
@@ -221,7 +226,7 @@ td.message-body {
 }
 
 .down {
-    transform: rotate(45deg)
+    transform: rotate(45deg);
 }
 
 .modalForm, .modalTitle {
@@ -251,6 +256,27 @@ td.message-body {
     color: $darkblue;
 }
 
+nav {
+    width: 100%;
+    position: fixed;
+    top: 92%;
+    left: 0%
+}
+
+ul {
+    position: relative;
+}
+
+.btn:focus,
+.page-link:focus {
+    box-shadow: none !important;
+}
+
+.btn:hover,
+.page-link:hover {
+    color: $coral  !important;
+}
+
 .footer {
     height: 10px;
     background-color: $primary;
@@ -258,18 +284,4 @@ td.message-body {
     bottom: 0;
     left: 0;
     width: 100%;
-}
-
-.btn:focus, .page-link:focus {
-    box-shadow: none !important;
-}
-
-.btn:hover, .page-link:hover {
-    color: $coral !important;
-}
-
-ul {
-    position: fixed;
-    top: 92%;
-    left: 40%
 }
