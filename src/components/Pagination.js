@@ -15,11 +15,11 @@ const TablePagination = ({ nPages, currentPage, setCurrentPage }) => {
   return (
     <nav>
       <ul className='pagination justify-content-center'>
-        <li className='page-item'>
+        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
           <a className='page-link' 
-              onClick={prevPage} 
-              href='/#'>
-              Previous
+            onClick={prevPage} 
+            href='/#'>
+            Previous
           </a>
         </li>
         {pageNumbers.map(pgNumber => (
@@ -31,7 +31,7 @@ const TablePagination = ({ nPages, currentPage, setCurrentPage }) => {
             </a>
           </li>
         ))}
-        <li className='page-item'>
+        <li className={`page-item ${currentPage === nPages ? 'disabled' : ''}`}>
           <a className='page-link' 
             onClick={nextPage}
             href='/#'> 

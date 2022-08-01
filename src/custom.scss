@@ -1,14 +1,11 @@
 //Import the fonts
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-// Set up font stack
 $roboto: "Roboto", sans-serif;
 
-// Set the font weight
 $regular: 300;
 $medium: 400;
 
-// First override some or all individual color variables
 $primary: #153065;
 $secondary: #B12005;
 $darkblue: #274C7D;
@@ -17,7 +14,6 @@ $lightcyan: #E0FFFF;
 $white: #ffffff;
 $coral: #FD7547;
 
-// Then add them to your custom theme-colors map, together with any additional colors you might need
 $theme-colors: (
     primary: $primary,
     secondary: $secondary,
@@ -28,7 +24,6 @@ $theme-colors: (
     cyan: $lightcyan
 );
 
-// Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 
 body {
@@ -82,41 +77,6 @@ body {
 
 //option 2
 
-// .kuri-img {
-//     height: 100px;
-// }
-
-// .kuri-icon {
-//     grid-column: 1 / 2;
-//     grid-row: 1 / 3;
-// }
-
-// .table-info {
-//     margin: 40px 30px 30px 40px;
-//     color: $primary;
-//     justify-content: left;
-//     display: grid;
-//     grid-template-columns: repeat(2, auto-fit);
-//     gap: 3rem;
-// }
-
-// .table-info-text {
-//     font-size: 20px;
-//     grid-column: 2;
-//     grid-row: 1 / 3;
-// }
-
-// .table-info-button {
-//     grid-column: 2;
-//     grid-row: 2 / 3;
-// }
-
-// .delete {
-//     margin-right: 10px;
-// }
-
-//option 4
-
 .kuri-img {
     height: 100px;
 }
@@ -127,9 +87,9 @@ body {
 }
 
 .table-info {
-    margin: 40px 30px 30px 30px;
+    margin: 40px 30px 30px 40px;
     color: $primary;
-    justify-content: center;
+    justify-content: left;
     display: grid;
     grid-template-columns: repeat(2, auto-fit);
     gap: 3rem;
@@ -214,10 +174,10 @@ td.message-body {
     color: $white;
 }
 
-// .up {
-//     position: absolute;
-//     margin-top: 6px;
-// }
+.up {
+    position: absolute;
+    margin-top: 6px;
+}
 
 .arrow {
     margin-left: 5px;
@@ -265,6 +225,10 @@ nav {
 
 ul {
     position: relative;
+}
+
+.disabled {
+    color: grey !important;
 }
 
 .btn:focus,

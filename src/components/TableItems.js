@@ -15,37 +15,16 @@ const TableItems = ({ messages, setMessages, currentMessages, ascending, onDelet
             <th>
               Message ID
             </th>
-            {/* <th>
-              Message Timestamp
-              <i className='arrow up' onClick={(e) => {
-                handleSetArrow(e);
-                setSortFactor('Timestamp');
-                setAscending(!ascending);
-                setMessages(onSort(messages));
-                }
-              }></i>
-            </th>
-            <th>
-              Message Body
-              <i className='arrow up' onClick={(e) => {
-                handleSetArrow(e);
-                setSortFactor('Message');
-                setAscending(!ascending);
-                setMessages(onSort(messages));
-                }
-              }></i>
-            </th> */}
-
             <th>
               Message Timestamp
 
-              <i class="arrow up" onClick={() => {
+              <i className="arrow up" onClick={() => {
                   setSortFactor('Timestamp');
                   setAscending(true);
                   setMessages(onSort(messages));
                   }
                   }></i>
-              <i class="arrow down" onClick={() => {
+              <i className="arrow down" onClick={() => {
                   setSortFactor('Timestamp');
                   setAscending(false);
                   setMessages(onSort(messages));
@@ -55,13 +34,13 @@ const TableItems = ({ messages, setMessages, currentMessages, ascending, onDelet
             <th>
               Message Body
 
-              <i class="arrow up" onClick={() => {
+              <i className="arrow up" onClick={() => {
                   setSortFactor('Message');
                   setAscending(true);
                   setMessages(onSort(messages));
                   }
                   }></i>
-              <i class="arrow down" onClick={() => {
+              <i className="arrow down" onClick={() => {
                   setSortFactor('Message');
                   setAscending(false);
                   setMessages(onSort(messages));
