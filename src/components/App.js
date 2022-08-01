@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import tableService from '../services/tableService';
-import messageService from "../services/messageService";
+import messageService from '../services/messageService';
 import TableItems from './TableItems';
-import Header from "./Header";
-import Footer from "./Footer";
-import TableInfo from "./TableInfo";
-import TablePagination from "./Pagination";
+import Header from './Header';
+import Footer from './Footer';
+import TableInfo from './TableInfo';
+import TablePagination from './Pagination';
 
 const App = () => {
   const [messages, setMessages] = useState([]);
@@ -13,7 +13,7 @@ const App = () => {
   const [ascending, setAscending] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
-  const baseUrl = "http://localhost:5001";
+  const baseUrl = 'http://localhost:5001';
 
 
   const messageCount = messages.length;
@@ -114,6 +114,7 @@ const App = () => {
       <TableItems
         messages={sortedMessages}
         currentMessages={currentMessages}
+        ascending={ascending}
         setMessages={setMessages}
         onDelete={handleDelete}
         onResend={handleResend}
@@ -122,9 +123,9 @@ const App = () => {
         setAscending={setAscending}
       />
       <TablePagination
-          nPages={nPages}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+        nPages={nPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
       <Footer />
     </div>
