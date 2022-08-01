@@ -2,11 +2,6 @@ import Table from 'react-bootstrap/Table';
 import Row from './Row';
 
 const TableItems = ({ messages, setMessages, currentMessages, ascending, onDelete, onResend, onSort, setSortFactor, setAscending}) => {
-  const handleSetArrow = (e) => {
-    e.preventDefault();
-    e.target.classList.toggle('down')
-  }
-  
   return (
     <div className='message-table'>
     <Table className='table-items'>
